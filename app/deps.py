@@ -10,6 +10,17 @@ from .utils import (
 from jose import jwt
 from pydantic import ValidationError
 
+from secrets import DETA_KEY
+from deta import Deta  # Import Deta
+
+
+
+# Initialize with a Project Key
+deta = Deta(DETA_KEY)
+
+# This how to connect to or create a database.
+db = deta.Base("users")
+
 reuseable_oauth = OAuth2PasswordBearer(
     tokenUrl="/login",
     scheme_name="JWT"
@@ -36,7 +47,7 @@ async def get_current_user(token: str = Depends(reuseable_oauth)):
             headers={"WWW-Authenticate": "Bearer"},
         )
         
-    user: Union[dict[str, Any], None] = db.get(token_data.sub, None)
+    user: Union[dict[str, Any], None] = db.fetch({"username": token_data.sub}).items[0]
     
     
     if user is None:
@@ -45,4 +56,4 @@ async def get_current_user(token: str = Depends(reuseable_oauth)):
             detail="Could not find user",
         )
     
-    return SystemUser(**user)
+    return user
