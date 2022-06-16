@@ -28,7 +28,10 @@ app = FastAPI()
 
 @app.post("/token", response_model=Token, tags=["User"])
 async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
-    user = db.fetch({"username": form_data.username}).items[0]
+    try:
+        user = db.fetch({"username": form_data.username}).items[0]
+    except IndexError:
+        user = None
     if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

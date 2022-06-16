@@ -13,7 +13,7 @@ from .endpoints import (
 
 router = APIRouter()
 
-# router.include_router(shipping.router, prefix='/shipping', tags=['Shipping'])
+router.include_router(shipping.router, prefix='/shipping', tags=['Shipping'])
 # router.include_router(products.router, prefix='/products', tags=['Products'])
 # router.include_router(orders.router, prefix='/orders', tags=['Orders'])
 # router.include_router(products.router, prefix='/products', tags=['Products'])
