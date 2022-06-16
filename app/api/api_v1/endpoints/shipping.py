@@ -51,3 +51,37 @@ async def get_shipping(shipping_id: str,current_user: User = Depends(get_current
         )
     return user['shipping']
 
+@router.put('/shipping/{shipping_id}')
+async def update_shipping(shipping_id: str, shipping: Shipping, current_user: User = Depends(get_current_active_user)):
+    try:
+        user = db.fetch({"shipping.shipping_id": shipping_id}).items[0]
+    except IndexError:
+        user = None
+    if user is None:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="User with this shipping_id does not exist"
+        )
+    data_obj = dict(shipping)
+    data_obj["updated_at"] = str(maya.now())
+    db.update(
+        {'shipping' : data_obj},
+        str(user['key'])
+    )
+    return data_obj
+
+@router.delete('/shipping/{shipping_id}')
+async def delete_shipping(shipping_id: str, current_user: User = Depends(get_current_active_user)):
+    try:
+        user = db.fetch({"shipping.shipping_id": shipping_id}).items[0]
+    except IndexError:
+        user = None
+    if user is None:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="User with this shipping_id does not exist"
+        )
+    db.delete(
+        str(user['key'])
+    )
+    return {"message": "User deleted"}
