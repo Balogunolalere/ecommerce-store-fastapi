@@ -50,7 +50,7 @@ async def get_shipping(shipping_id: str,current_user: User = Depends(get_current
         )
     return user['shipping']
 
-@router.put('/shipping/{shipping_id}')
+@router.patch('/shipping/{shipping_id}')
 async def update_shipping(shipping_id: str, shipping: Shipping, current_user: User = Depends(get_current_active_user)):
     try:
         user = db.fetch({"shipping.shipping_id": shipping_id}).items[0]

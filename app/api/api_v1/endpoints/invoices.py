@@ -48,7 +48,7 @@ async def get_invoices(invoices_id: str,current_user: User = Depends(get_current
         )
     return user['invoices']
 
-@router.put('/invoices/{invoices_id}')
+@router.patch('/invoices/{invoices_id}')
 async def update_invoices(invoices_id: str, invoices: Invoices, current_user: User = Depends(get_current_active_user)):
     try:
         user = db.fetch({"invoices.invoices_id": invoices_id}).items[0]
