@@ -30,7 +30,6 @@ async def create_shipping(shipping: Shipping, current_user: User = Depends(get_c
     data_obj["user_id"] = user["id"]
     data_obj["shipping_id"] = str(uuid4())
     data_obj["created_at"] = str(maya.now())
-    data_obj["updated_at"] = str(maya.now())
     db.update(
         {'shipping' : data_obj},
         str(user['key'])
@@ -84,4 +83,5 @@ async def delete_shipping(shipping_id: str, current_user: User = Depends(get_cur
     db.delete(
         str(user['key'])
     )
-    return {"message": "User deleted"}
+    return {"message": "deleted"}
+
