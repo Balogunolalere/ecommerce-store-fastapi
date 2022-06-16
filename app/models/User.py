@@ -1,7 +1,6 @@
 #from datetime import datetime
 from pydantic import BaseModel, Field, validator, EmailStr
-from typing import Optional, Union
-from uuid import uuid4
+from typing import Union
 import re
 import maya
 

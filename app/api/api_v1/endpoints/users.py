@@ -1,5 +1,3 @@
-from ast import Str
-from turtle import st
 from fastapi import APIRouter, Depends, HTTPException, status
 from app.deps import get_current_active_user
 from app.models.User import (
