@@ -35,7 +35,6 @@ async def create_categories(categories: Categories = Depends(), current_user: Us
         )
     try:
         category = db.fetch({"name": categories.name}).items[0]
-        print(category)
     except IndexError:
         category = None
     if category is not None:
@@ -49,7 +48,7 @@ async def create_categories(categories: Categories = Depends(), current_user: Us
     data_obj["created_at"] = str(maya.now())
     data_obj['name'] = categories.name.capitalize()
     db.insert(
-        {'categories' : data_obj},
+         data_obj,
     )
     return data_obj
 
