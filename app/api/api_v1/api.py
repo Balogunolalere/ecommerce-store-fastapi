@@ -8,6 +8,7 @@ from .endpoints import (
     collections,
     category,
     users,
+    utils
 )
 
 
@@ -20,4 +21,5 @@ router.include_router(invoices.router, prefix='/invoices', tags=['Invoices'])
 router.include_router(collections.router, prefix='/collections', tags=['Collections'])
 router.include_router(category.router, prefix='/categories', tags=['Categories'])
 router.include_router(users.router, prefix='/users', tags=['User'])
+router.include_router(utils.router)
 
