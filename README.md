@@ -1,5 +1,7 @@
 # ecommerce-store-fastapi
 
-## This is an e-commerce api built with fastapi and deta
+ This is an e-commerce api built with fastapi and deta
 
-## its a work in progress and has the minimal features and working of a standard online store
+ http://127.0.0.1:8000/api/v1/utils/list_endpoints/ to check out available endpoints
+
+ 
