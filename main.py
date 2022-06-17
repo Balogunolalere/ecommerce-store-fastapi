@@ -23,7 +23,15 @@ db = deta.Base("users")
 
 
 
-app = FastAPI()
+app = FastAPI(
+    description='simple ecommerce api',
+    version="0.0.1",
+    contact={
+        "name": "bandersnatchx64",
+        "url": "https://twitter.com/bandersnatchx64",
+        "email": "lordareello@gmail.com",
+    },
+)
 
 
 @app.post("/token", response_model=Token, tags=["User"])
