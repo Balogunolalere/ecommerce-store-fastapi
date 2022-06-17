@@ -11,10 +11,7 @@ class Product(BaseModel):
     price : float
     available_quantity : int
     tags : List[str]
-    created_at : Optional[datetime] = datetime.now()
-    updated_at : Optional[datetime] = datetime.now()
     created_by : str
-    updated_by : str
     product_manufacturer : str
     product_brand_name : str
     product_collection : str

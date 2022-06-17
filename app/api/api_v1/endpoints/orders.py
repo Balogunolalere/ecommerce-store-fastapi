@@ -20,7 +20,7 @@ db = deta.Base("users")
 router = APIRouter()
 
 @router.post('/orders')
-async def create_orders(orders: Orders, current_user: User = Depends(get_current_active_user)):
+async def create_orders(orders: Orders = Depends(), current_user: User = Depends(get_current_active_user)):
     try:
         user = db.fetch({"username": current_user['username']}).items[0]
     except IndexError:

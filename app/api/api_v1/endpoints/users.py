@@ -34,7 +34,7 @@ async def read_users_me(current_user: User = Depends(get_current_active_user)):
     return current_user
 
 @router.post('/auth/register', response_model=UserCreateResponse)
-def create_user(request:UserCreate):
+def create_user(request:UserCreate = Depends()):
     try:
         user = db.fetch({"email": request.email}).items[0]
     except IndexError:
@@ -67,12 +67,13 @@ def create_user(request:UserCreate):
             'last_name': str(user_object["last_name"]).capitalize(),
             'phone': user_object["phone"],
             'address': str(user_object["address"]).capitalize(),
-            'city': str(user_object["city"]).upper(),
-            'state': str(user_object["state"]).upper(),
-            'country': str(user_object["country"]).capitalize(),
+            'city': str(user_object["city"]).capitalize(),
+            'state': str(user_object["state"]).capitalize(),
+            'country': str(user_object["country_code"]).upper(),
             'created_at' : str(maya.now()),
             'zip': user_object["zip"],
             'disabled' : False,
+            'is_admin' : False,
         }
     )
     user= db.insert(data)

@@ -21,7 +21,7 @@ router = APIRouter()
 
 
 @router.post('/shipping')
-async def create_shipping(shipping: Shipping, current_user: User = Depends(get_current_active_user)):
+async def create_shipping(shipping: Shipping = Depends(), current_user: User = Depends(get_current_active_user)):
     try:
         user = db.fetch({"username": current_user['username']}).items[0]
     except IndexError:

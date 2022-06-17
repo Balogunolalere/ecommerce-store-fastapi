@@ -16,7 +16,7 @@ class UserCreate(BaseModel):
     city : str = Field(..., min_length=3, max_length=50)
     state : str = Field(..., min_length=3, max_length=50)
     zip : str = Field(..., min_length=3, max_length=50)
-    country : str = Field(..., min_length=3, max_length=50)
+    country_code : str = Field(..., min_length=2, max_length=5)
     disabled : bool = False
 
     @validator('phone')

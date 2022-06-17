@@ -7,7 +7,3 @@ class Collection(BaseModel):
     id : int
     name: str
     created_by: str
-    date_created : Optional[datetime] = datetime.now()
-    created_by : str
-    date_updated : Optional[datetime] = datetime.now()
-    updated_by : str
