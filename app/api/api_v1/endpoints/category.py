@@ -71,24 +71,7 @@ async def get_categories():
     resp = [x for x in db.fetch().items]
     return resp
 
-@router.patch('/categories/{categories_id}')
-async def update_categories(categories_id: str, categories: Categories, current_user: User = Depends(get_current_active_user)):
-    try:
-        user = db.fetch({"categories_id": categories_id}).items[0]
-    except Exception:
-        user = None
-    if user is None:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="User with this categories_id does not exist"
-        )
-    data_obj = dict(categories)
-    data_obj["updated_at"] = str(maya.now())
-    db.update(
-        {'categories' : data_obj},
-        str(user['key'])
-    )
-    return data_obj
+
 
 @router.delete('/categories/{categories_id}')
 async def delete_categories(categories_id: str, current_user: User = Depends(get_current_active_user)):
