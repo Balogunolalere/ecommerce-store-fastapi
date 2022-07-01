@@ -1,3 +1,8 @@
 secrets.py
-.env
 __pycache__
+app/__pycache__
+app/models/__pycache__
+app/api/__pycache__
+app/api/api_v1/__pycache__
+app/api/api_v1/endpoints/__pycache__
+

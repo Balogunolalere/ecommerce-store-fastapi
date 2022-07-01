@@ -74,6 +74,7 @@ def create_user(request:UserCreate = Depends()):
             'zip': user_object["zip"],
             'disabled' : False,
             'is_admin' : False,
+            
         }
     )
     user= db.insert(data)
